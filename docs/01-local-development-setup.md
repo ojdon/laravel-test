@@ -19,7 +19,17 @@ sudo n 21
 npm install && npm run dev
 touch database/database.sqlite
 php artisan migrate:fresh --seed
+```
+
+## Running the project
+After the setup, you can run the project with:
+```
 php artisan serve
+```
+
+Or via Laravel Sail: 
+```
+./vendor/bin/sail up
 ```
 
 ## Database access
