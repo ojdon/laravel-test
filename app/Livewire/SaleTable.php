@@ -18,7 +18,7 @@ class SaleTable extends Component
     #[On('saleRecorded')]
     public function loadSalesData()
     {
-        $this->sales = Sale::all()->sortByDesc('created_at');
+        $this->sales = Sale::all()->load('product')->sortByDesc('created_at');
     }
 
     public function render()
