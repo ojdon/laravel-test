@@ -53,6 +53,8 @@ class SaleForm extends Component
                 'selling_price' => $sellingPrice,
             ]);
 
+            $this->dispatch('saleRecorded');
+
             $this->reset(['quantity', 'unitCost']);
             $this->sellingPrice = 0.00;
 

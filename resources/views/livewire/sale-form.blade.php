@@ -8,7 +8,7 @@
             </ul>
         </div>
     @endif
-    <form class="flex flex-row items-center space-x-4">
+    <div class="flex flex-row items-center space-x-4">
         <div>
             <label for="quantity" class="block">Quantity:</label>
             <input type="number" wire:model.live="quantity" id="quantity" name="quantity" class="border rounded-md px-2 py-1" min="1">
@@ -26,5 +26,5 @@
         <div>
             <button wire:click="recordSale" class="bg-green-500 text-white px-4 py-2 rounded-md font-bold">Record Sale</button>
         </div>
-    </form>
+    </div>
 </div>

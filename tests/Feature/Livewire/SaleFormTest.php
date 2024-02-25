@@ -25,6 +25,16 @@ class SaleFormTest extends TestCase
     }
 
     /** @test */
+    public function creating_a_sale_dispatches_event()
+    {
+        Livewire::test(SaleForm::class)
+            ->set('quantity', 1)
+            ->set('unitCost', 10)
+            ->call('recordSale')
+            ->assertDispatched('saleRecorded');
+    }
+
+    /** @test */
     public function it_validates_required_fields()
     {
         Livewire::test(SaleForm::class)
