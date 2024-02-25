@@ -10,16 +10,24 @@
     @endif
     <div class="flex flex-row items-center space-x-4">
         <div>
-            <label for="quantity" class="block">Quantity:</label>
+            <label for="product" class="block">Product:</label>
+            <select id="product" name="product" wire:model.live="productId" class="border rounded-md px-4 py-1 text-left">
+                @foreach ($products as $product)
+                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label for="quantity" class="block">Quantity</label>
             <input type="number" wire:model.live="quantity" id="quantity" name="quantity" class="border rounded-md px-2 py-1" min="1">
         </div>
         <div>
-            <label for="unit_cost" class="block">Unit Cost (&pound;):</label>
+            <label for="unit_cost" class="block">Unit Cost (&pound;)</label>
             <input type="number" wire:model.live="unitCost" id="unit_cost" name="unit_cost" class="border rounded-md px-2 py-1" min="1">
         </div>
         <div>
             <p class="font-bold">
-                Selling Price:
+                Selling Price
                 <span class="block"> &pound; {{$sellingPrice ?? '0.00'}} </span>
             </p>
         </div>

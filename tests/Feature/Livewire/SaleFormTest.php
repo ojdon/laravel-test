@@ -16,6 +16,7 @@ class SaleFormTest extends TestCase
     public function it_can_record_sale()
     {
         Livewire::test(SaleForm::class)
+            ->set('productId', 1) // Simulate selecting Gold Coffee
             ->set('quantity', 1)
             ->set('unitCost', 10)
             ->call('recordSale');
@@ -51,6 +52,17 @@ class SaleFormTest extends TestCase
             ->call('calculateSellingPrice');
 
         $this->assertEquals(0.00, Livewire::test(SaleForm::class)->get('sellingPrice'));
+    }
+
+    /** @test */
+    public function it_records_sale_with_selected_product_type()
+    {
+        Livewire::test(SaleForm::class)
+            ->set('productId', 1)
+            ->set('quantity', 10)
+            ->set('unitCost', 5)
+            ->call('recordSale')
+            ->assertDispatched('saleRecorded');
     }
 
     /** @test */
