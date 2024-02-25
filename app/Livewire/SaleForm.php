@@ -32,7 +32,7 @@ class SaleForm extends Component
         $this->sellingPrice = $totalAmount;
     }
 
-    public function recordSale()
+    public function recordSale(): void
     {
         try {
             // Validate the incoming inputs

@@ -21,7 +21,7 @@ class SaleFormTest extends TestCase
             ->call('recordSale');
 
         $this->assertCount(1, Sale::all());
-        $this->assertEquals(23.34, Sale::first()->unit_cost);
+        $this->assertEquals(24, Sale::first()->selling_price);
     }
 
     /** @test */
