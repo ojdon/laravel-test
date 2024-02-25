@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Livewire;
 
 use App\Livewire\SaleTable;
 use App\Models\Sale;
@@ -42,5 +42,30 @@ class SaleTableTest extends TestCase
         // Mount the Livewire component without any sales data
         Livewire::test(SaleTable::class)
             ->assertSee('No sales recorded. Please enter using the form above to record a sale.');
+    }
+
+    /** @test */
+    public function sales_table_is_updated_when_event_is_dispatched()
+    {
+        Livewire::test(SaleTable::class)
+            ->call('loadSalesData')
+            ->assertSet('sales', Sale::all());
+
+        $this->assertCount(0, Sale::all());
+
+        // Add a new sale record
+        Sale::factory()->create([
+            'quantity' => 10,
+            'unit_cost' => 5,
+            'selling_price' => 10,
+        ]);
+
+        // Dispatch the saleRecorded event
+        Livewire::test(SaleTable::class)
+            ->call('loadSalesData')
+            ->dispatch('saleRecorded');
+
+        // Ensure the sales table is updated with new data
+        $this->assertCount(1, Sale::all());
     }
 }
